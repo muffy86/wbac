@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const sessionRoutes = require('./routes/session-routes');
@@ -29,10 +30,10 @@ app.listen(PORT, () => {
 process.on('SIGINT', async () => {
     try {
         console.log('\nShutting down server...');
-        
+
         // Stop all sessions
         await sessionExpiryManager.stopAllSessions();
-        
+
         console.log('Cleanup complete. Exiting...');
         process.exit(0);
     } catch (error) {
